@@ -90,10 +90,11 @@ function recursiveNavigation($subpages = null)
 
 Kirby::plugin('schnti/sitemap', [
 	'options' => [
-		'excludeSites'      => ['error', 'sitemap', 'thankyou'],
-		'excludeTemplates'  => [],
-		'includeSites'      => ['home', 'impressum', 'datenschutzerklaerung'],
-		'showUnlistedSites' => false
+		'excludeSites'        => ['error', 'sitemap', 'thankyou'],
+		'excludeTemplates'    => [],
+		'includeSites'        => ['home', 'impressum', 'datenschutzerklaerung'],
+		'showUnlistedSites'   => false,
+		'showOnePagerModules' => false
 	],
 	'tags'    => [
 		'sitemap' => [
