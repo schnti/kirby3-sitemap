@@ -44,32 +44,39 @@ Run these commands to update the plugin:
 You can set the following default options in your `config.php`:
 
 ```
-'schnti.sitemap.excludeSites      => ['error', 'sitemap', 'thankyou'],
-'schnti.sitemap.excludeTemplates  => [],
-'schnti.sitemap.includeSites      => ['impressum', 'datenschutzerklaerung'],
-'schnti.sitemap.showUnlistedSites => false
+'schnti.sitemap.excludeSites         => ['error', 'sitemap', 'thankyou'],
+'schnti.sitemap.excludeTemplates     => [],
+'schnti.sitemap.includeSites         => ['home', 'impressum', 'datenschutzerklaerung'],
+'schnti.sitemap.showUnlistedSites    => false,
+'schnti.sitemap.showOnePagerModules' => false
 ```
 
 ### excludeSites
-An Array of [Kirby Page UIDs](https://getkirby.com/docs/reference/objects/page/uid) who are excluded from the sitemap.
+An array of [Kirby page UIDs](https://getkirby.com/docs/reference/objects/page/uid) who are excluded from the sitemap.
 
 Default: `['error', 'sitemap', 'thankyou']`
  
 ### excludeTemplates
 
-An Array of [Template Names](https://getkirby.com/docs/reference/objects/page/intended-template) whose pages are excluded from the sitemap.
+An array of [intended template names](https://getkirby.com/docs/reference/objects/page/intended-template) whose pages are excluded from the sitemap.
 
 Default: `[]`
 
 ### includeSites
 
-An Array of [Kirby Page UIDs](https://getkirby.com/docs/reference/objects/page/uid) who are included if their status is unlisted.
+An array of [Kirby page UIDs](https://getkirby.com/docs/reference/objects/page/uid) who are included if their status is unlisted.
 
-Default: `['impressum', 'datenschutzerklaerung']`
+Default: `['home', 'impressum', 'datenschutzerklaerung']`
 
 ### showUnlistedSites
 
-An Boolean, if true unlisted sites are also included.
+If `true`, all unlisted sites are also included.
+
+Default: `false`
+
+### showOnePagerModules
+
+If `false`, all [intended template names](https://getkirby.com/docs/reference/objects/page/intended-template) starting with `module.` are excluded from the sitemap.
 
 Default: `false`
 
@@ -77,11 +84,16 @@ Default: `false`
 
 ## How to use it
 
-### sitemap.xml
-Visit the sitemap at this url: http://example.com/sitemap.xml.
+### sitemap.xml (for search engines)
+Visit the sitemap as XML at this url: `http://example.com/sitemap.xml`
 
 There is no actual file generated.
 
+
+### sitemap.json (for tools)
+Visit the sitemap as JSON at this url: `http://example.com/sitemap.json`
+
+There is no actual file generated.
 
 ### HTML sitemap
 

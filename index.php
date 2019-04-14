@@ -5,13 +5,19 @@ function check($p)
 	$excludeSites = option('schnti.sitemap.excludeSites');
 	$excludeTemplates = option('schnti.sitemap.excludeTemplates');
 	$includeSites = option('schnti.sitemap.includeSites');
-	$showInvisibleSites = option('schnti.sitemap.showUnlistedSites');
+	$showUnlistedSites = option('schnti.sitemap.showUnlistedSites');
+	$showOnePagerModules = option('schnti.sitemap.showOnePagerModules');
 
 	// invisible or include
-	if ($showInvisibleSites == true || ($p->isListed() && ($p->depth() == 1 || $p->parent()->isListed())) || in_array($p->uri(), $includeSites)) {
-		// excluded site or template
-		if (!in_array($p->uri(), $excludeSites) && !in_array($p->intendedTemplate(), $excludeTemplates)) {
-			return true;
+	if ($showUnlistedSites == true || ($p->isListed() && ($p->depth() == 1 || $p->parent()->isListed())) || in_array($p->uri(), $includeSites)) {
+
+		// remove one pager modules
+		if ($showOnePagerModules || substr($p->intendedTemplate(), 0, 7) !== 'module.') {
+
+			// excluded site or template
+			if (!in_array($p->uri(), $excludeSites) && !in_array($p->intendedTemplate(), $excludeTemplates)) {
+				return true;
+			}
 		}
 	}
 	return false;
@@ -86,7 +92,7 @@ Kirby::plugin('schnti/sitemap', [
 	'options' => [
 		'excludeSites'      => ['error', 'sitemap', 'thankyou'],
 		'excludeTemplates'  => [],
-		'includeSites'      => ['impressum', 'datenschutzerklaerung'],
+		'includeSites'      => ['home', 'impressum', 'datenschutzerklaerung'],
 		'showUnlistedSites' => false
 	],
 	'tags'    => [
