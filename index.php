@@ -32,8 +32,6 @@ function recursiveNavigationJson($subpages = null)
 
 		$sub = null;
 
-		//		$sitemap .= '<a href="' . $p->url() . '">' . $p->title() . '</a>';
-
 		if ($p->hasChildren()) {
 			$result = recursiveNavigationJson($p->children());
 
@@ -86,7 +84,6 @@ function recursiveNavigation($subpages = null)
 
 Kirby::plugin('schnti/sitemap', [
 	'options' => [
-		'importantSites'    => [],
 		'excludeSites'      => ['error', 'sitemap', 'thankyou'],
 		'excludeTemplates'  => [],
 		'includeSites'      => ['impressum', 'datenschutzerklaerung'],
@@ -105,8 +102,6 @@ Kirby::plugin('schnti/sitemap', [
 			'method'  => 'GET',
 			'action'  => function () {
 
-				$importantSites = option('schnti.sitemap.importantSites');
-
 				$sitemap = '<?xml version="1.0" encoding="utf-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
 				// get all pages
@@ -118,9 +113,7 @@ Kirby::plugin('schnti/sitemap', [
 						continue;
 
 					$sitemap .= '<url><loc>' . html($p->url());
-					$sitemap .= '</loc><lastmod>' . date('c', $p->modified()) . '</lastmod><priority>';
-					$sitemap .= ($p->isHomePage() || in_array($p->uri(), $importantSites)) ? 1 : 0.6 / $p->depth();
-					$sitemap .= '</priority></url>';
+					$sitemap .= '</loc><lastmod>' . date('c', $p->modified()) . '</lastmod></url>';
 
 				}
 

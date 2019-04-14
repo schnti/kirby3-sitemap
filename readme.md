@@ -39,17 +39,40 @@ Run these commands to update the plugin:
     
 ## Options
 
-### Config options
+## Config options
 
 You can set the following default options in your `config.php`:
 
 ```
-'schnti.sitemap.excludeSites      => ['error', 'sitemap', 'thankyou'],       // Array of [page UIDs](https://getkirby.com/docs/reference/objects/page/uid) (Default: ['error', 'sitemap', 'thankyou']`)
-'schnti.sitemap.excludeTemplates  => [],                                     // Array of [template names](https://getkirby.com/docs/reference/objects/page/intended-template) (Default: `[]`)
-'schnti.sitemap.includeSites      => ['impressum', 'datenschutzerklaerung'], // Array of [page UIDs](https://getkirby.com/docs/reference/objects/page/uid) (Default: `['impressum', 'datenschutzerklaerung']`)
-'schnti.sitemap.showUnlistedSites => false,                                  // Boolean (Default: false)
-'schnti.sitemap.importantSites    => []                                      //  Array of [page UIDs](https://getkirby.com/docs/reference/objects/page/uid) (Default: `[]`)
+'schnti.sitemap.excludeSites      => ['error', 'sitemap', 'thankyou'],
+'schnti.sitemap.excludeTemplates  => [],
+'schnti.sitemap.includeSites      => ['impressum', 'datenschutzerklaerung'],
+'schnti.sitemap.showUnlistedSites => false
 ```
+
+### excludeSites
+An Array of [Kirby Page UIDs](https://getkirby.com/docs/reference/objects/page/uid) who are excluded from the sitemap.
+
+Default: `['error', 'sitemap', 'thankyou']`
+ 
+### excludeTemplates
+
+An Array of [Template Names](https://getkirby.com/docs/reference/objects/page/intended-template) whose pages are excluded from the sitemap.
+
+Default: `[]`
+
+### includeSites
+
+An Array of [Kirby Page UIDs](https://getkirby.com/docs/reference/objects/page/uid) who are included if their status is unlisted.
+
+Default: `['impressum', 'datenschutzerklaerung']`
+
+### showUnlistedSites
+
+An Boolean, if true unlisted sites are also included.
+
+Default: `false`
+
 
 
 ## How to use it
