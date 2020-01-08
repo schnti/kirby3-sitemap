@@ -2,9 +2,7 @@
 
 A plugin for [Kirby 3 CMS](http://getkirby.com) that generates an `sitemap.xml` and HTML sitemap.
 
-<aside class="warning">
-Warning: there are breaking config changes between version 1. * and 2. *
-</aside>
+> :warning: Warning: there are config breaking changes between version 1. * and 2. *
 
 ## Commercial Usage
 
