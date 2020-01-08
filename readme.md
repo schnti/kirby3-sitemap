@@ -2,6 +2,10 @@
 
 A plugin for [Kirby 3 CMS](http://getkirby.com) that generates an `sitemap.xml` and HTML sitemap.
 
+<aside class="warning">
+Warning: there are breaking config changes between version 1. * and 2. *
+</aside>
+
 ## Commercial Usage
 
 This plugin is free but if you use it in a commercial project please consider
@@ -44,63 +48,81 @@ Run these commands to update the plugin:
 You can set the following default options in your `config.php`:
 
 ```
-'schnti.sitemap.excludeSites         => ['error', 'sitemap', 'thankyou'],
-'schnti.sitemap.excludeTemplates     => [],
-'schnti.sitemap.includeSites         => ['home', 'impressum', 'datenschutzerklaerung'],
-'schnti.sitemap.showUnlistedSites    => false,
-'schnti.sitemap.showOnePagerModules' => false
+'schnti.sitemap.xml.sites.blacklist'      => ['error', 'sitemap', 'thankyou'],
+'schnti.sitemap.xml.sites.whitelist'      => ['home', 'impressum', 'datenschutzerklaerung'],
+'schnti.sitemap.xml.sites.prio'           => [],
+'schnti.sitemap.xml.templates.blacklist'  => [],
+'schnti.sitemap.xml.templates.whitelist'  => [],
+'schnti.sitemap.xml.showUnlistedSites'    => false,
+'schnti.sitemap.xml.showOnePagerModules'  => false,
+'schnti.sitemap.xml.showTags'             => false,
+
+'schnti.sitemap.html.sites.blacklist'     => ['error', 'sitemap', 'thankyou'],
+'schnti.sitemap.html.sites.whitelist'     => ['home', 'impressum', 'datenschutzerklaerung'],
+'schnti.sitemap.html.sites.prio'          => [],
+'schnti.sitemap.html.templates.blacklist' => [],
+'schnti.sitemap.html.templates.whitelist' => [],
+'schnti.sitemap.html.showUnlistedSites'   => false,
+'schnti.sitemap.html.showOnePagerModules' => false,
+'schnti.sitemap.html.showTags'            => false,
+
+'schnti.sitemap.json.sites.blacklist'     => ['error', 'sitemap', 'thankyou'],
+'schnti.sitemap.json.sites.whitelist'     => ['home', 'impressum', 'datenschutzerklaerung'],
+'schnti.sitemap.json.sites.prio'          => [],
+'schnti.sitemap.json.templates.blacklist' => [],
+'schnti.sitemap.json.templates.whitelist' => [],
+'schnti.sitemap.json.showUnlistedSites'   => false,
+'schnti.sitemap.json.showOnePagerModules' => false,
+'schnti.sitemap.json.showTags'            => false
+
 ```
 
-### excludeSites
-An array of [Kirby page UIDs](https://getkirby.com/docs/reference/objects/page/uid) who are excluded from the sitemap.
+### .sites.blacklist
+An array of [Kirby page IDs](https://getkirby.com/docs/reference/objects/page/id) who are excluded from the sitemap.
 
-Default: `['error', 'sitemap', 'thankyou']`
+### .sites.whitelist
+An array of [Kirby page IDs](https://getkirby.com/docs/reference/objects/page/id) who are included if their status is unlisted.
  
-### excludeTemplates
+### .sites.whitelist
 
+### .templates.blacklist
 An array of [intended template names](https://getkirby.com/docs/reference/objects/page/intended-template) whose pages are excluded from the sitemap.
 
-Default: `[]`
+### .templates.whitelist
+An array of [intended template names](https://getkirby.com/docs/reference/objects/page/intended-template) whose pages are included if their status is unlisted.
 
-### includeSites
-
-An array of [Kirby page UIDs](https://getkirby.com/docs/reference/objects/page/uid) who are included if their status is unlisted.
-
-Default: `['home', 'impressum', 'datenschutzerklaerung']`
-
-### showUnlistedSites
-
+### .showUnlistedSites
 If `true`, all unlisted sites are also included.
 
-Default: `false`
+### .showOnePagerModules
+If you are using the [Kirby Modules from Thomas Günther](https://github.com/medienbaecker/kirby-modules) this plugin hides automatically the "modules" page from the sitemap.
 
-### showOnePagerModules
+If `showOnePagerModules` is `true` the OnePager Modules are shown as anker navigation links.
 
-If `false`, all [intended template names](https://getkirby.com/docs/reference/objects/page/intended-template) starting with `module.` are excluded from the sitemap.
+### .showTags (for experts)
+If `true`, for example blog categories or tags are listed as sub page navigation links.
 
-Default: `false`
-
-
+Internal the `$page->children()->listed()->pluck('tags', ',', true)` and `url($p->url(), ['params' => ['tag' => urlencode($tag)]])` function is used.  
 
 ## How to use it
 
 ### sitemap.xml (for search engines)
-Visit the sitemap as XML at this url: `http://example.com/sitemap.xml`
+Visit the sitemap as XML: `http://example.com/sitemap.xml`
 
 There is no actual file generated.
 
 
 ### sitemap.json (for tools)
-Visit the sitemap as JSON at this url: `http://example.com/sitemap.json`
+Visit the sitemap as JSON: `http://example.com/sitemap.json`
 
 There is no actual file generated.
 
-### HTML sitemap
+### HTML sitemap (for humans)
 
 Use this simple tag which lets you output an HTML sitemap.
 
 In your text file you can use it as follows:
 
 ```
-(sitemap:)
+(sitemap: )
 ```
