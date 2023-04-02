@@ -1,6 +1,8 @@
 {
   "name": "schnti/sitemap",
   "description": "kirby sitemap plugin",
+  "homepage": "https://github.com/schnti/kirby3-sitemap",
+  "version": "2.1.0",
   "authors": [
     {
       "name": "Timo Schneider",
